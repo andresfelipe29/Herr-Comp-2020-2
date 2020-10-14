@@ -1,0 +1,111 @@
+--------------------------------------------------------------------------------
+I1 cache:         32768 B, 64 B, 8-way associative
+D1 cache:         32768 B, 64 B, 8-way associative
+LL cache:         3145728 B, 64 B, 12-way associative
+Command:          ./a.out 5000 4000
+Data file:        cachegrind.out.4261
+Events recorded:  Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Events shown:     Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Event sort order: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Thresholds:       0.1 100 100 100 100 100 100 100 100
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                   I1mr           ILmr           Dr                   D1mr            DLmr           Dw                  D1mw                DLmw               
+--------------------------------------------------------------------------------
+962,391,226 (100.0%) 1,744 (100.0%) 1,681 (100.0%) 460,594,200 (100.0%) 14,579 (100.0%) 8,589 (100.0%) 60,202,258 (100.0%) 25,002,501 (100.0%) 7,504,591 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                   I1mr         ILmr         Dr                   D1mr           DLmr           Dw                  D1mw                DLmw                file:function
+--------------------------------------------------------------------------------
+340,055,013 (35.33%)   3 ( 0.17%)   3 ( 0.18%) 160,025,004 (34.74%)     1 ( 0.01%)     1 ( 0.01%) 20,005,005 (33.23%)  2,500,000 (10.00%) 2,500,000 (33.31%)  /home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/gprof_example.cpp:option1(long*, int, int)
+340,055,013 (35.33%)   1 ( 0.06%)   1 ( 0.06%) 160,025,004 (34.74%)     1 ( 0.01%)     1 ( 0.01%) 20,005,005 (33.23%) 20,000,000 (79.99%) 2,503,484 (33.36%)  /home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/gprof_example.cpp:option2(long*, int, int)
+280,000,013 (29.09%)   1 ( 0.06%)   1 ( 0.06%) 140,000,005 (30.40%)     1 ( 0.01%)     1 ( 0.01%) 20,000,005 (33.22%)  2,500,001 (10.00%) 2,499,486 (33.31%)  /home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/gprof_example.cpp:option3(long*, int, int)
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/gprof_example.cpp
+--------------------------------------------------------------------------------
+Ir                   I1mr       ILmr       Dr                   D1mr       DLmr       Dw                  D1mw                DLmw               
+
+-- line 10 ----------------------------------------
+          .          .          .                    .          .          .                   .                   .                  .           */
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .           void print_elapsed(auto start, auto end );
+          .          .          .                    .          .          .                   .                   .                  .           void option1(long * data, int nx, int ny);
+          .          .          .                    .          .          .                   .                   .                  .           void option2(long * data, int nx, int ny);
+          .          .          .                    .          .          .                   .                   .                  .           void option3(long * data, int nx, int ny);
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .           int main(int argc, char **argv)
+          5 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           0          0          0                   3 ( 0.00%)          0                  0           {
+          2 ( 0.00%) 0          0                    1 ( 0.00%) 0          0                   0                   0                  0             if (argc < 3){
+          .          .          .                    .          .          .                   .                   .                  .               printf("Usage: cacheTest sizeI sizeJ\nIn first input.\n");
+          .          .          .                    .          .          .                   .                   .                  .               return 1;
+          .          .          .                    .          .          .                   .                   .                  .             }
+          7 ( 0.00%) 0          0                    2 ( 0.00%) 1 ( 0.01%) 0                   2 ( 0.00%)          0                  0             long sI = atoi(argv[1]);
+          7 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           2 ( 0.00%) 0          0                   2 ( 0.00%)          0                  0             long sJ = atoi(argv[2]);
+          .          .          .                    .          .          .                   .                   .                  .             
+          6 ( 0.00%) 0          0                    2 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             printf("Operating on matrix of size %ld by %ld\n", sI, sJ);
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .             
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             auto start = std::chrono::steady_clock::now(); //starts a measuring clock
+          9 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           2 ( 0.00%) 0          0                   2 ( 0.00%)          0                  0             long *arr = new long[sI*sJ]; // double array.
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             auto end = std::chrono::steady_clock::now(); //measures the time spent from the start
+          5 ( 0.00%) 0          0                    2 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             print_elapsed(start, end); //prints thetime passed
+          .          .          .                    .          .          .                   .                   .                  .             
+          .          .          .                    .          .          .                   .                   .                  .             // option 1
+          2 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           0          0          0                   2 ( 0.00%)          0                  0             start = std::chrono::steady_clock::now();
+          8 ( 0.00%) 0          0                    3 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             option1(arr, sI, sJ);
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             end = std::chrono::steady_clock::now();
+          5 ( 0.00%) 0          0                    2 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             print_elapsed(start, end);
+          .          .          .                    .          .          .                   .                   .                  .             
+          .          .          .                    .          .          .                   .                   .                  .             // option 2
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             start = std::chrono::steady_clock::now();
+          8 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           3 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          1 ( 0.00%)          0                  0             option2(arr, sI, sJ);
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             end = std::chrono::steady_clock::now();
+          5 ( 0.00%) 0          0                    2 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             print_elapsed(start, end);
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .             // option 3
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             start = std::chrono::steady_clock::now();
+          8 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           3 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          1 ( 0.00%)          0                  0             option3(arr, sI, sJ);
+          2 ( 0.00%) 0          0                    0          0          0                   2 ( 0.00%)          0                  0             end = std::chrono::steady_clock::now();
+          5 ( 0.00%) 0          0                    2 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0             print_elapsed(start, end);
+          .          .          .                    .          .          .                   .                   .                  .           
+          6 ( 0.00%) 0          0                    2 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          1 ( 0.00%)          0                  0             printf("%ld\n", arr[0]);
+          .          .          .                    .          .          .                   .                   .                  .             
+          2 ( 0.00%) 0          0                    0          0          0                   0                   0                  0             return 0;
+          2 ( 0.00%) 0          0                    2 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          0                   0                  0           }
+          .          .          .                    .          .          .                   .                   .                  .             
+          .          .          .                    .          .          .                   .                   .                  .           
+         24 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           0          0          0                  16 ( 0.00%)          0                  0           void print_elapsed(auto start, auto end )
+          .          .          .                    .          .          .                   .                   .                  .           {
+         16 ( 0.00%) 0          0                    0          0          0                   4 ( 0.00%)          0                  0             std::cout << "Elapsed time in ms: "
+         64 ( 0.00%) 0          0                    0          0          0                  24 ( 0.00%)          0                  0                       << std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()
+         12 ( 0.00%) 0          0                    0          0          0                   4 ( 0.00%)          0                  0                       << "\n";
+         20 ( 0.00%) 0          0                   12 ( 0.00%) 0          0                   0                   0                  0           }
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .           void option1(long * data, int nx, int ny)
+          5 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           0          0          0                   4 ( 0.00%)          0                  0           {
+     30,005 ( 0.00%) 0          0               15,002 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0               for (long i=0; i < nx; ++i)
+120,025,000 (12.47%) 2 ( 0.11%) 2 ( 0.12%)  60,010,000 (13.03%) 0          0               5,000 ( 0.01%)          0                  0                   for (long j=0; j < ny; ++j)
+220,000,000 (22.86%) 0          0          100,000,000 (21.71%) 0          0          20,000,000 (33.22%)  2,500,000 (10.00%) 2,500,000 (33.31%)              data[(i * (ny)) + j ] = i; //runs through lines, faster, closer in chache
+          3 ( 0.00%) 0          0                    2 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          0                   0                  0           }
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .           void option2(long * data, int nx, int ny)
+          5 ( 0.00%) 0          0                    0          0          0                   4 ( 0.00%)          0                  0           {
+     30,005 ( 0.00%) 0          0               15,002 ( 0.00%) 0          0                   1 ( 0.00%)          0                  0               for (long i=0; i < nx; ++i)
+120,025,000 (12.47%) 0          0           60,010,000 (13.03%) 0          0               5,000 ( 0.01%)          0                  0                   for (long j=0; j < ny; ++j)
+220,000,000 (22.86%) 1 ( 0.06%) 1 ( 0.06%) 100,000,000 (21.71%) 0          0          20,000,000 (33.22%) 20,000,000 (79.99%) 2,503,484 (33.36%)              data[(j * (nx)) + i ] = i; //runs through columns, slower, further in cache
+          3 ( 0.00%) 0          0                    2 ( 0.00%) 1 ( 0.01%) 1 ( 0.01%)          0                   0                  0           }
+          .          .          .                    .          .          .                   .                   .                  .           
+          .          .          .                    .          .          .                   .                   .                  .           void option3(long * data, int nx, int ny)
+          5 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)           0          0          0                   4 ( 0.00%)          0                  0           {
+280,000,005 (29.09%) 0          0          140,000,003 (30.40%) 0          0          20,000,001 (33.22%)  2,500,001 (10.00%) 2,499,486 (33.31%)      for (int i=0; i < nx*ny; ++i) data[i] = i;
+         22 ( 0.00%) 2 ( 0.11%) 2 ( 0.12%)           8 ( 0.00%) 2 ( 0.01%) 1 ( 0.01%)          5 ( 0.00%)          0                  0           }
+
+--------------------------------------------------------------------------------
+Ir                   I1mr        ILmr        Dr                   D1mr       DLmr       Dw                  D1mw                DLmw               
+--------------------------------------------------------------------------------
+960,110,300 (99.76%) 14 ( 0.80%) 14 ( 0.83%) 460,050,061 (99.88%) 9 ( 0.06%) 7 ( 0.08%) 60,010,102 (99.68%) 25,000,001 (99.99%) 7,502,970 (99.98%)  events annotated
+

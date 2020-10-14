@@ -1,0 +1,143 @@
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.3850' (creator: callgrind-3.16.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 120404506
+Trigger: Program termination
+Profiled target:  ./a.out 5000 4000 (PID 3850, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+962,384,314 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                    file:function
+--------------------------------------------------------------------------------
+340,055,013 (35.33%)  gprof_example.cpp:option1(long*, int, int) [/home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/a.out]
+340,055,013 (35.33%)  gprof_example.cpp:option2(long*, int, int) [/home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/a.out]
+280,000,013 (29.09%)  gprof_example.cpp:option3(long*, int, int) [/home/live/Herr-Comp-2020-2/clases/clase-10-09-Profiling2/a.out]
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: gprof_example.cpp
+--------------------------------------------------------------------------------
+Ir                   
+
+-- line 10 ----------------------------------------
+          .           */
+          .           
+          .           void print_elapsed(auto start, auto end );
+          .           void option1(long * data, int nx, int ny);
+          .           void option2(long * data, int nx, int ny);
+          .           void option3(long * data, int nx, int ny);
+          .           
+          .           int main(int argc, char **argv)
+          5 ( 0.00%)  {
+          2 ( 0.00%)    if (argc < 3){
+          .               printf("Usage: cacheTest sizeI sizeJ\nIn first input.\n");
+          .               return 1;
+          .             }
+         12 ( 0.00%)    long sI = atoi(argv[1]);
+        884 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+          8 ( 0.00%)    long sJ = atoi(argv[2]);
+        166 ( 0.00%)  => ???:atoi (1x)
+          .             
+         11 ( 0.00%)    printf("Operating on matrix of size %ld by %ld\n", sI, sJ);
+      3,878 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+          .           
+          .             
+          7 ( 0.00%)    auto start = std::chrono::steady_clock::now(); //starts a measuring clock
+      1,780 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+         14 ( 0.00%)    long *arr = new long[sI*sJ]; // double array.
+      1,466 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+          3 ( 0.00%)    auto end = std::chrono::steady_clock::now(); //measures the time spent from the start
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          5 ( 0.00%)    print_elapsed(start, end); //prints thetime passed
+     11,942 ( 0.00%)  => gprof_example.cpp:void print_elapsed<std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >) (1x)
+          .             
+          .             // option 1
+          3 ( 0.00%)    start = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          8 ( 0.00%)    option1(arr, sI, sJ);
+340,055,013 (35.33%)  => gprof_example.cpp:option1(long*, int, int) (1x)
+          3 ( 0.00%)    end = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          5 ( 0.00%)    print_elapsed(start, end);
+      1,381 ( 0.00%)  => gprof_example.cpp:void print_elapsed<std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >) (1x)
+          .             
+          .             // option 2
+          3 ( 0.00%)    start = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          8 ( 0.00%)    option2(arr, sI, sJ);
+340,055,013 (35.33%)  => gprof_example.cpp:option2(long*, int, int) (1x)
+          3 ( 0.00%)    end = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          5 ( 0.00%)    print_elapsed(start, end);
+      1,381 ( 0.00%)  => gprof_example.cpp:void print_elapsed<std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >) (1x)
+          .           
+          .             // option 3
+          3 ( 0.00%)    start = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          8 ( 0.00%)    option3(arr, sI, sJ);
+280,000,013 (29.09%)  => gprof_example.cpp:option3(long*, int, int) (1x)
+          3 ( 0.00%)    end = std::chrono::steady_clock::now();
+         30 ( 0.00%)  => ???:std::chrono::_V2::steady_clock::now() (1x)
+          5 ( 0.00%)    print_elapsed(start, end);
+      1,381 ( 0.00%)  => gprof_example.cpp:void print_elapsed<std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >) (1x)
+          .           
+          7 ( 0.00%)    printf("%ld\n", arr[0]);
+        729 ( 0.00%)  => ???:printf (1x)
+          .             
+          2 ( 0.00%)    return 0;
+          2 ( 0.00%)  }
+          .             
+          .           
+         24 ( 0.00%)  void print_elapsed(auto start, auto end )
+          .           {
+         24 ( 0.00%)    std::cout << "Elapsed time in ms: "
+      5,537 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+      1,071 ( 0.00%)  => ???:std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (3x)
+         72 ( 0.00%)              << std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()
+      5,797 ( 0.00%)  => ???:_dl_runtime_resolve_xsave (1x)
+      1,272 ( 0.00%)  => ???:std::ostream::operator<<(long) (3x)
+        364 ( 0.00%)  => /usr/include/c++/9.2.0/chrono:std::common_type<std::chrono::duration<long, std::ratio<1l, 1000000000l> >, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >::type std::chrono::operator-<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> >, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > const&, std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > > const&) (4x)
+        208 ( 0.00%)  => /usr/include/c++/9.2.0/chrono:std::enable_if<std::chrono::__is_duration<std::chrono::duration<long, std::ratio<1l, 1000l> > >::value, std::chrono::duration<long, std::ratio<1l, 1000l> > >::type std::chrono::duration_cast<std::chrono::duration<long, std::ratio<1l, 1000l> >, long, std::ratio<1l, 1000000000l> >(std::chrono::duration<long, std::ratio<1l, 1000000000l> > const&) (4x)
+         28 ( 0.00%)  => /usr/include/c++/9.2.0/chrono:std::chrono::duration<long, std::ratio<1l, 1000l> >::count() const (4x)
+         16 ( 0.00%)              << "\n";
+      1,652 ( 0.00%)  => ???:std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (4x)
+         20 ( 0.00%)  }
+          .           
+          .           void option1(long * data, int nx, int ny)
+          5 ( 0.00%)  {
+     30,005 ( 0.00%)      for (long i=0; i < nx; ++i)
+120,025,000 (12.47%)          for (long j=0; j < ny; ++j)
+220,000,000 (22.86%)              data[(i * (ny)) + j ] = i; //runs through lines, faster, closer in chache
+          3 ( 0.00%)  }
+          .           
+          .           void option2(long * data, int nx, int ny)
+          5 ( 0.00%)  {
+     30,005 ( 0.00%)      for (long i=0; i < nx; ++i)
+120,025,000 (12.47%)          for (long j=0; j < ny; ++j)
+220,000,000 (22.86%)              data[(j * (nx)) + i ] = i; //runs through columns, slower, further in cache
+          3 ( 0.00%)  }
+          .           
+          .           void option3(long * data, int nx, int ny)
+          5 ( 0.00%)  {
+280,000,005 (29.09%)      for (int i=0; i < nx*ny; ++i) data[i] = i;
+         22 ( 0.00%)  }
+    101,473 ( 0.01%)  => gprof_example.cpp:__static_initialization_and_destruction_0(int, int) (1x)
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+960,110,349 (99.76%)  events annotated
+
