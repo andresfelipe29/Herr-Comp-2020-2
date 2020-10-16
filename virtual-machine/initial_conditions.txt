@@ -1,0 +1,6 @@
+8	#xrange
+16	#nmolecules
+2	#latticesize
+100	#niterations
+0	#randomgeneratorseed
+0.005	#eps
