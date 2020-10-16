@@ -1,15 +1,10 @@
-#include <iostream>
-#include <vector>
-#include <array>
-#include <cmath>
-#include <string>
 #include "particle.h"
 #include "config.h"
 
 double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI);
 int Locate(const CONFIG object, PARTICLE j);
 void distribute(const CONFIG object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI);
-double entropy(const CONFIG &object, double entropia, int origin, int destiny, std::vector<double> &PI, std::vector<int> distribucion);
+double entropy(const CONFIG &object, double entropia,const int origin,const int destiny, std::vector<double> &PI, std::vector<int> distribucion);
 
 int main()
 {
@@ -25,7 +20,6 @@ int main()
 double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI)
 {
   double S = 0.0;
-  double eps = 0.0005;
   
   for(int j = 0; j < std::sqrt(object.nmolecules); j++){ //ubicacion inicial de las particulas en el espacio
     for(int i = 0; i < std::sqrt(object.nmolecules); i++){
@@ -33,12 +27,11 @@ double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configura
     }
   }
   for(int i = 0; i < object.nmolecules; i++){ //calcula la distribucion inicial en el lattice
-    
     distribucion[Locate(object, configuracion[i])] += 1;
   }
   for(int i = 0; i < object.latticesize*object.latticesize; i++){ //calcula la entropia inicial
     PI[i] = distribucion[i]/object.nmolecules;
-    if(PI[i] < eps){
+    if(PI[i] < object.eps){
       S += PI[i];
     }
     else{
@@ -83,7 +76,7 @@ void distribute(const CONFIG object, std::vector<PARTICLE> &configuracion, std::
   }
 }
 
-double entropy(const CONFIG &object, double entropia, int origin, int destiny, std::vector<double> &PI, std::vector<int> distribucion)
+double entropy(const CONFIG &object, double entropia,const int origin,const int destiny, std::vector<double> &PI, std::vector<int> distribucion)
 {
   if(PI[origin] < object.eps){
     entropia -= PI[origin];

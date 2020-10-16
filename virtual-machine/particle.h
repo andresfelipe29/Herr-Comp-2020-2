@@ -2,7 +2,6 @@
 #include <vector>
 #include <random>
 #include <cmath>
-#pragma once
 
 struct PARTICLE{
   std::vector<int> posicion{0,0,0};

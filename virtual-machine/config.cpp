@@ -9,17 +9,17 @@ void CONFIG::read(const std::string &fname)
   std::string line;
 
   std::getline(fin, line);
-  xrange = std::stod( line.erase(line.find('#')) );
+  xrange = std::stoi( line.erase(line.find('#'), line.size()) );
   std::getline(fin, line);
-  nmolecules = std::stod( line.erase(line.find('#')) );
+  nmolecules = std::stoi( line.erase(line.find('#'), line.size()) );
   std::getline(fin, line);
-  latticesize = std::stod( line.erase(line.find('#')) );
+  latticesize = std::stoi( line.erase(line.find('#'), line.size()) );
   std::getline(fin, line);
-  niterations = std::stod( line.erase(line.find('#')) );
+  niterations = std::stoi( line.erase(line.find('#'), line.size()) );
   std::getline(fin, line);
-  randomgeneratorseed = std::stod( line.erase(line.find('#')) );
+  randomgeneratorseed = std::stoi( line.erase(line.find('#'), line.size()) );
   std::getline(fin, line);
-  eps = std::stod( line.erase(line.find('#')) );
+  eps = std::stod( line.erase(line.find('#'), line.size()) );
   
   // close it
   fin.close();
