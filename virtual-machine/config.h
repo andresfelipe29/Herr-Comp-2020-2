@@ -3,7 +3,6 @@
 #include <string>
 
 struct CONFIG{
-  double tmin = 0.0;
   int xrange = 0;
   int nmolecules = 0;
   int latticesize = 0;

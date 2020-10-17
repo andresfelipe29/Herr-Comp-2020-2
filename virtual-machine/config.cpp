@@ -24,19 +24,3 @@ void CONFIG::read(const std::string &fname)
   // close it
   fin.close();
 }
-
-/*void CONFIG::print(const std::string & fname)
-{
-  // open file (for writing)
-  std::ofstream fout(fname);
-  
-  // read it
-  fout << tmin << "\n";
-  fout << nmolecules << "\n";
-  fout << laticesize << "\n";
-  fout << niterations << "\n";
-  fout << randomgeneratorseed << "\n";
-
-  // close it
-  fout.close();
-  }*/

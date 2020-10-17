@@ -7,11 +7,11 @@ void PARTICLE::move(const int randomgeneratorseed, const int xrange)
   std::uniform_int_distribution<int> gen(0, 1); // uniform, unbiased
 
   posicion[gen(q)] += 2*gen(p)-1;
-  if(posicion[0] < -xrange/2 || posicion[0] > xrange/2){
-    posicion[0] += (posicion[0] < -xrange/2) ? 2 : -2;
+  if(posicion[0] < 0 || posicion[0] > xrange){
+    posicion[0] += (posicion[0] < 0) ? 1 : -1;
   }
-  if(posicion[1] < -xrange/2 || posicion[1] > xrange/2){
-    posicion[1] += (posicion[0] < -xrange/2) ? 2 : -2;
+  if(posicion[1] < 0 || posicion[1] > xrange){
+    posicion[1] += (posicion[0] < 0) ? 1 : -1;
   }
   posicion[2] = posicion[0] + posicion[1]*xrange; 
 }
